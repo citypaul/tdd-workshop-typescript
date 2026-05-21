@@ -1,0 +1,8 @@
+packages:
+  - "."
+
+verifyDepsBeforeRun: false
+
+allowBuilds:
+  esbuild: true
+  msw: true
