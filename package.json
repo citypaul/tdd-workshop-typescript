@@ -10,6 +10,8 @@
   },
   "scripts": {
     "preinstall": "node src/demo-booking-system/scripts/check-node-version.js",
+    "postinstall": "playwright install chromium",
+    "install:browsers": "playwright install chromium",
     "dev": "pnpm dev:card",
     "dev:card": "vite --config src/card-validator/vite.config.ts",
     "dev:booking": "concurrently --kill-others-on-fail --names api,web \"pnpm dev:booking:api\" \"pnpm dev:booking:web\"",
