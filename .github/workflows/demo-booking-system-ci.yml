@@ -1,0 +1,152 @@
+name: demo-booking-system CI
+
+on:
+  pull_request:
+    paths:
+      - 'src/demo-booking-system/**'
+      - '.github/workflows/demo-booking-system-ci.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'src/demo-booking-system/**'
+      - '.github/workflows/demo-booking-system-ci.yml'
+  schedule:
+    - cron: '0 3 * * *' # nightly full mutation run
+  workflow_dispatch:
+
+concurrency:
+  group: dbs-ci-${{ github.ref }}
+  cancel-in-progress: true
+
+defaults:
+  run:
+    working-directory: .
+
+jobs:
+  verify:
+    name: verify (lint + typecheck + tests + build)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24.15
+          cache: pnpm
+          cache-dependency-path: pnpm-lock.yaml
+      - run: pnpm install --frozen-lockfile
+      - name: Cache Playwright browsers
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-${{ hashFiles('src/demo-booking-system/pnpm-lock.yaml') }}
+      - run: pnpm exec playwright install --with-deps chromium
+      - run: pnpm lint
+      - run: pnpm typecheck:booking
+      - run: pnpm format:check
+      - run: pnpm test:coverage
+      - run: pnpm test:booking:mirror
+      - run: pnpm build
+      - run: pnpm build-storybook
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: coverage-report
+          path: src/demo-booking-system/reports/coverage
+          retention-days: 14
+
+  mutation-diff:
+    name: mutation (diff vs main)
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24.15
+          cache: pnpm
+          cache-dependency-path: pnpm-lock.yaml
+      - run: pnpm install --frozen-lockfile
+      - name: Cache Playwright browsers
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-${{ hashFiles('src/demo-booking-system/pnpm-lock.yaml') }}
+      - run: pnpm exec playwright install --with-deps chromium
+      - run: pnpm mutation:booking:diff
+        env:
+          BASE_REF: origin/main
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: mutation-diff-report
+          path: src/demo-booking-system/reports/mutation
+          retention-days: 14
+
+  mutation-full:
+    name: mutation (full, nightly + main)
+    if: github.event_name == 'schedule' || (github.event_name == 'push' && github.ref == 'refs/heads/main')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24.15
+          cache: pnpm
+          cache-dependency-path: pnpm-lock.yaml
+      - run: pnpm install --frozen-lockfile
+      - name: Cache Playwright browsers
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-${{ hashFiles('src/demo-booking-system/pnpm-lock.yaml') }}
+      - run: pnpm exec playwright install --with-deps chromium
+      - run: pnpm mutation:booking
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: mutation-full-report
+          path: src/demo-booking-system/reports/mutation
+          retention-days: 30
+
+  acceptance:
+    name: acceptance (Playwright + MSW)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24.15
+          cache: pnpm
+          cache-dependency-path: pnpm-lock.yaml
+      - run: pnpm install --frozen-lockfile
+      - name: Cache Playwright browsers
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-${{ hashFiles('src/demo-booking-system/pnpm-lock.yaml') }}
+      - run: pnpm exec playwright install --with-deps chromium
+      - run: pnpm acceptance:booking
+        env:
+          CI: 'true'
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: playwright-report
+          path: src/demo-booking-system/playwright-report
+          retention-days: 14

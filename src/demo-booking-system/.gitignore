@@ -1,0 +1,15 @@
+node_modules
+dist
+storybook-static
+playwright-report
+test-results
+coverage
+reports
+.stryker-tmp
+.vite
+.vitest-attachments
+**/__screenshots__
+*.log
+.DS_Store
+
+*storybook.log
