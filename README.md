@@ -68,11 +68,14 @@ From the repository root:
 
 ```bash
 pnpm install
-pnpm exec playwright install chromium
 pnpm test:card
 ```
 
-The Playwright command installs Chromium for browser-mode tests. If Chromium is already installed, it is quick.
+`pnpm install` also installs the Playwright Chromium browser used by the browser-mode tests. If that browser install is skipped or fails, run it manually:
+
+```bash
+pnpm run install:browsers
+```
 
 To run the card-validator app:
 
