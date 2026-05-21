@@ -25,12 +25,19 @@ To run the card-validator app:
 pnpm dev:card
 ```
 
+To run the booking-system demo:
+
+```bash
+pnpm dev:booking
+pnpm test:booking
+```
 
 ## Repository Layout
 
 ```text
 spec/                         Lab specifications and workshop guides
 src/card-validator/           Credit-card validator and React form
+src/demo-booking-system/      Demo app for behavioural testing examples
 ```
 
 ## Labs
@@ -59,6 +66,10 @@ Use the start tags during the workshop. Use the end tags only after trying the e
 | `pnpm test:card:unit` | Run pure validator tests |
 | `pnpm test:card:browser` | Run React form browser tests |
 | `pnpm mutate:card` | Run mutation testing for the card validator |
+| `pnpm test:booking` | Run booking-system domain/API/web tests |
+| `pnpm acceptance:booking` | Run booking-system Playwright acceptance tests |
+| `pnpm mutation:booking` | Run booking-system mutation tests |
+| `pnpm mutation:booking:mirror` | Run the mirror-test mutation demo |
 
 ## Test Data
 
