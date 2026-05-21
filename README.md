@@ -49,6 +49,7 @@ src/card-validator/           Credit-card validator and React form
 
 - **Lab 1** - basic validation: Luhn algorithm, sanitisation, empty/digits checks
 - **Lab 2** - provider detection: Visa / Mastercard / Amex identification, provider-specific length rules, Mastercard 2221-2720 range
+- **Lab 3** - wiring the validator into a React card-entry form and testing it through the browser
 
 ## Git Tags
 
@@ -58,6 +59,7 @@ src/card-validator/           Credit-card validator and React form
 | `lab-1-end` | Lab 1 complete |
 | `lab-2-start` | Before Lab 2 implementation |
 | `lab-2-end` | Lab 2 complete |
+| `lab-3-start` | Before Lab 3 implementation |
 
 Use the start tags during the workshop. Use the end tags only after trying the exercise, or when you want to inspect one finished route through the problem.
 
@@ -67,6 +69,7 @@ Use the start tags during the workshop. Use the end tags only after trying the e
 | --- | --- |
 | `pnpm test:card` | Run the card-validator tests |
 | `pnpm test:card:unit` | Run pure validator tests |
+| `pnpm test:card:browser` | Run React form browser tests |
 
 ## Test Data
 
