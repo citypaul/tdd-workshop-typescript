@@ -60,36 +60,36 @@ src/demo-booking-system/      Demo app for behavioural testing examples
 
 ## Git Tags
 
-| Tag | What it represents |
-| --- | --- |
+| Tag           | What it represents          |
+| ------------- | --------------------------- |
 | `lab-1-start` | Before Lab 1 implementation |
-| `lab-1-end` | Lab 1 complete |
+| `lab-1-end`   | Lab 1 complete              |
 | `lab-2-start` | Before Lab 2 implementation |
-| `lab-2-end` | Lab 2 complete |
+| `lab-2-end`   | Lab 2 complete              |
 | `lab-3-start` | Before Lab 3 implementation |
 
 Use the start tags during the workshop. Use the end tags only after trying the exercise, or when you want to inspect one finished route through the problem.
 
 ## Useful Commands
 
-| Command | Purpose |
-| --- | --- |
-| `pnpm test:card` | Run the card-validator tests |
-| `pnpm test:card:unit` | Run pure validator tests |
-| `pnpm test:card:browser` | Run React form browser tests |
-| `pnpm test:booking` | Run booking-system domain/API/web tests |
-| `pnpm acceptance:booking` | Run booking-system Playwright acceptance tests |
+| Command                        | Purpose                                        |
+| ------------------------------ | ---------------------------------------------- |
+| `pnpm test:card`               | Run the card-validator tests                   |
+| `pnpm test:card:unit`          | Run pure validator tests                       |
+| `pnpm test:card:browser`       | Run React form browser tests                   |
+| `pnpm test:booking`            | Run booking-system domain/API/web tests        |
+| `pnpm acceptance:booking`      | Run booking-system Playwright acceptance tests |
 
 ## Test Data
 
 More examples and usage notes live in
 [spec/card-test-numbers.md](spec/card-test-numbers.md).
 
-| Provider | Number | Length |
-| --- | --- | --- |
-| Visa | `4111111111111111` | 16 |
-| Visa | `4539578763621486` | 16 |
-| Mastercard classic | `5111111111111118` | 16 |
-| Mastercard 2-series | `2223003122003222` | 16 |
-| Amex | `341111111111111` | 15 |
-| Amex | `378282246310005` | 15 |
+| Provider            | Number             | Length |
+| ------------------- | ------------------ | ------ |
+| Visa                | `4111111111111111` | 16     |
+| Visa                | `4539578763621486` | 16     |
+| Mastercard classic  | `5111111111111118` | 16     |
+| Mastercard 2-series | `2223003122003222` | 16     |
+| Amex                | `341111111111111`  | 15     |
+| Amex                | `378282246310005`  | 15     |

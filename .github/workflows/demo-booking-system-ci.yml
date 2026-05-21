@@ -3,15 +3,15 @@ name: demo-booking-system CI
 on:
   pull_request:
     paths:
-      - 'src/demo-booking-system/**'
-      - '.github/workflows/demo-booking-system-ci.yml'
+      - "src/demo-booking-system/**"
+      - ".github/workflows/demo-booking-system-ci.yml"
   push:
     branches: [main]
     paths:
-      - 'src/demo-booking-system/**'
-      - '.github/workflows/demo-booking-system-ci.yml'
+      - "src/demo-booking-system/**"
+      - ".github/workflows/demo-booking-system-ci.yml"
   schedule:
-    - cron: '0 3 * * *' # nightly full mutation run
+    - cron: "0 3 * * *" # nightly full mutation run
   workflow_dispatch:
 
 concurrency:
@@ -143,7 +143,7 @@ jobs:
       - run: pnpm exec playwright install --with-deps chromium
       - run: pnpm acceptance:booking
         env:
-          CI: 'true'
+          CI: "true"
       - uses: actions/upload-artifact@v4
         if: failure()
         with:
