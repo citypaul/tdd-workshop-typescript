@@ -11,7 +11,7 @@ const isValidLuhn = (digits: string): boolean => {
       const digit = Number(d);
       if (i % 2 === 0) return digit;
       const doubled = digit * 2;
-      return doubled > 9 ? doubled - 9 : doubled;
+      return doubled >= 10 ? doubled - 9 : doubled;
     })
     .reduce((a, b) => a + b, 0);
 
