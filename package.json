@@ -1,0 +1,46 @@
+{
+  "name": "tdd-workshop-typescript",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "TypeScript TDD workshop materials with lab checkpoints.",
+  "engines": {
+    "node": ">=22.12.0",
+    "pnpm": ">=10 <12"
+  },
+  "scripts": {
+    "dev": "pnpm dev:card",
+    "dev:card": "vite --config src/card-validator/vite.config.ts",
+    "build": "pnpm build:card",
+    "build:card": "vite build --config src/card-validator/vite.config.ts",
+    "test": "pnpm test:card",
+    "test:card": "vitest run --config src/card-validator/vite.config.ts",
+    "test:card:coverage": "vitest run --config src/card-validator/vite.config.ts --coverage",
+    "test:card:unit": "vitest run --config src/card-validator/vite.config.ts --project=unit",
+    "test:card:browser": "vitest run --config src/card-validator/vite.config.ts --project=browser",
+    "test:card:watch": "vitest --config src/card-validator/vite.config.ts",
+    "test:card:watch:ui": "vitest --config src/card-validator/vite.config.ts --project=browser --browser.headless=false --ui",
+    "mutate": "pnpm mutate:card",
+    "mutate:card": "stryker run src/card-validator/stryker.conf.json"
+  },
+  "dependencies": {
+    "react": "19.2.4",
+    "react-dom": "19.2.4",
+    "react-svg-credit-card-payment-icons": "5.1.2"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "4.1.18",
+    "@testing-library/jest-dom": "6.9.1",
+    "@testing-library/react": "16.3.2",
+    "@testing-library/user-event": "14.6.1",
+    "@types/react": "19.2.13",
+    "@types/react-dom": "19.2.3",
+    "@vitejs/plugin-react": "5.1.3",
+    "@vitest/coverage-v8": "4.0.18",
+    "jsdom": "28.0.0",
+    "tailwindcss": "4.1.18",
+    "typescript": "5.9.3",
+    "vite": "7.3.1",
+    "vitest": "4.0.18"
+  }
+}
