@@ -10,6 +10,8 @@
   },
   "scripts": {
     "preinstall": "node src/demo-booking-system/scripts/check-node-version.js",
+    "postinstall": "playwright install chromium",
+    "install:browsers": "playwright install chromium",
     "dev": "pnpm dev:card",
     "dev:card": "vite --config src/card-validator/vite.config.ts",
     "start:lab1": "node scripts/switch-lab.mjs lab1",
