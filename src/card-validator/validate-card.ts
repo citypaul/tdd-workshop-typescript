@@ -11,9 +11,12 @@ const isValidLuhn = (digits: string): boolean => {
       const digit = Number(d);
       if (i % 2 === 0) return digit;
       const doubled = digit * 2;
-      return doubled > 9 ? doubled - 9 : doubled;
+      return doubled >= 10 ? doubled - 9 : doubled;
     })
-    .reduce((a, b) => a + b, 0);
+    .reduce((a, b) => {
+      // Stryker disable next-line ArithmeticOperator: equivalent mutant — replacing + with - negates the sum, but `sum % 10 === 0` is sign-symmetric in JS (−10 % 10 === 0), so observable behaviour is unchanged. No test can distinguish the two. See notes/equivalent-mutants.md.
+      return a + b;
+    }, 0);
 
   return sum % 10 === 0;
 };

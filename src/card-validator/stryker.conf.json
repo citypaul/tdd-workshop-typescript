@@ -1,0 +1,24 @@
+{
+  "$schema": "../../node_modules/@stryker-mutator/core/schema/stryker-schema.json",
+  "_comment": "Mutation testing for the TypeScript card validator source.",
+  "packageManager": "pnpm",
+  "plugins": ["@stryker-mutator/vitest-runner"],
+  "reporters": ["html", "clear-text", "progress"],
+  "testRunner": "vitest",
+  "testRunnerNodeArgs": [],
+  "vitest": {
+    "configFile": "src/card-validator/vite.config.ts"
+  },
+  "mutate": [
+    "src/card-validator/**/*.{ts,tsx}",
+    "!src/card-validator/**/*.test.{ts,tsx}",
+    "!src/card-validator/**/*.property.test.ts",
+    "!src/card-validator/**/main.tsx",
+    "!src/card-validator/**/test-setup.ts"
+  ],
+  "ignorePatterns": ["dist", "coverage", "reports", "node_modules"],
+  "concurrency": 1,
+  "timeoutMS": 60000,
+  "incremental": false,
+  "disableTypeChecks": "src/card-validator/**/*.{js,ts,jsx,tsx,html,vue}"
+}
