@@ -1,0 +1,12 @@
+node_modules
+dist
+storybook-static
+playwright-report
+test-results
+coverage
+reports
+.stryker-tmp
+.vite
+.vitest-attachments
+**/__screenshots__
+pnpm-lock.yaml
