@@ -4,3 +4,49 @@
   --font-sans: "Inter", sans-serif;
   --font-mono: "Space Mono", monospace;
 }
+
+@layer utilities {
+  [role="img"][aria-label] {
+    opacity: 0.4;
+    transition:
+      opacity 200ms ease,
+      transform 200ms ease;
+  }
+
+  [role="img"][aria-label].is-active {
+    opacity: 1;
+    transform: scale(1.15);
+  }
+
+  [role="status"]:not(:empty) {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.375rem;
+    font-size: 0.875rem;
+  }
+
+  [role="status"]:not(:empty)::before {
+    flex-shrink: 0;
+    font-weight: 700;
+  }
+
+  form:has(input[aria-invalid="true"]) [role="status"]:not(:empty) {
+    background-color: oklch(96% 0.018 30);
+    color: oklch(38% 0.130 28);
+  }
+
+  form:has(input[aria-invalid="true"]) [role="status"]:not(:empty)::before {
+    content: "!";
+  }
+
+  form:has(input[aria-invalid="false"]) [role="status"]:not(:empty) {
+    background-color: oklch(95% 0.030 160);
+    color: oklch(38% 0.090 160);
+  }
+
+  form:has(input[aria-invalid="false"]) [role="status"]:not(:empty)::before {
+    content: "✓";
+  }
+}
