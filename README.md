@@ -6,16 +6,69 @@ The core exercise is a credit-card validator built through strict TDD in TypeScr
 
 ## Setup
 
-You need Node.js 22.12+ and pnpm 10 or 11. If `pnpm` is not already available, recent Node installs can usually enable it with:
+You need:
+
+- Node.js 22.12.0 or newer. Node 22 LTS is the simplest choice.
+- pnpm 10 or 11.
+- Git.
+
+Check your versions:
+
+```bash
+node --version
+pnpm --version
+git --version
+```
+
+### Fix Node.js
+
+If `node --version` is missing or lower than `v22.12.0`, install Node 22 with one of these:
+
+macOS/Linux with `nvm`:
+
+```bash
+nvm install 22
+nvm use 22
+```
+
+Windows with `nvm-windows`:
+
+```powershell
+nvm install 22
+nvm use 22
+```
+
+Any OS with Volta:
+
+```bash
+volta install node@22
+```
+
+After changing Node, open a new terminal and run `node --version` again.
+
+### Fix pnpm
+
+If `pnpm --version` is missing, or is not `10.x` or `11.x`, use Corepack:
 
 ```bash
 corepack enable
+corepack install -g pnpm@10
+pnpm --version
 ```
 
-Install dependencies from the repository root:
+If Corepack cannot create the `pnpm` command on Windows, run the terminal as Administrator and try again, or install pnpm directly:
+
+```bash
+npm install -g pnpm@10
+```
+
+### Install Dependencies
+
+From the repository root:
 
 ```bash
 pnpm install
+pnpm exec playwright install chromium
 pnpm test:card
 ```
 
@@ -31,6 +84,8 @@ These commands check out the workshop tags (`lab-1-start`, `lab-2-start`, and `l
 
 After switching, open the lab spec and follow the "Getting Started" section.
 
+The Playwright command installs Chromium for browser-mode tests. If Chromium is already installed, it is quick.
+
 To run the card-validator app:
 
 ```bash
@@ -43,6 +98,22 @@ To run the booking-system demo:
 pnpm dev:booking
 pnpm test:booking
 ```
+
+### Windows Notes
+
+The main workshop commands should work on Windows from PowerShell, Windows Terminal, Git Bash, or the VS Code terminal:
+
+```bash
+pnpm install
+pnpm test:card
+pnpm dev:card
+pnpm dev:booking
+pnpm test:booking
+```
+
+Prefer a short checkout path, such as `C:\dev\tdd-workshop-typescript`, especially on locked-down corporate machines.
+
+Known exception: `pnpm mutation:booking:diff` runs a Bash script. Use Git Bash or WSL for that optional command. The normal lab commands do not need Bash.
 
 ## Repository Layout
 
