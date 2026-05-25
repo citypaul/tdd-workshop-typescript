@@ -126,8 +126,6 @@ pnpm test:booking
 
 Prefer a short checkout path, such as `C:\dev\tdd-workshop-typescript`, especially on locked-down corporate machines.
 
-Known exception: `pnpm mutation:booking:diff` runs a Bash script. Use Git Bash or WSL for that optional command. The normal lab commands do not need Bash.
-
 ## Repository Layout
 
 ```text
