@@ -94,8 +94,8 @@ jobs:
           retention-days: 14
 
   mutation-full:
-    name: mutation (full, nightly + main)
-    if: github.event_name == 'schedule' || (github.event_name == 'push' && github.ref == 'refs/heads/main')
+    name: mutation (full, nightly + manual)
+    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
