@@ -88,9 +88,9 @@ Useful card-number examples are collected in
 An empty string (or a string that is only spaces/dashes) should be rejected with
 the error message "Card number is required".
 
-| Input | Result |
-|-------|--------|
-| `""` | required error |
+| Input   | Result                                        |
+| ------- | --------------------------------------------- |
+| `""`    | required error                                |
 | `"   "` | required error (empty after stripping spaces) |
 | `"---"` | required error (empty after stripping dashes) |
 
@@ -99,10 +99,10 @@ the error message "Card number is required".
 After stripping spaces and dashes, if anything other than digits `0-9` remains,
 reject with the error message "Card number must contain only digits".
 
-| Input | Result |
-|-------|--------|
-| `"abcd"` | digits error |
-| `"4111abcd1111"` | digits error |
+| Input                | Result       |
+| -------------------- | ------------ |
+| `"abcd"`             | digits error |
+| `"4111abcd1111"`     | digits error |
 | `"41111111111111!1"` | digits error |
 
 ### AC 3: Reject invalid checksum
@@ -110,20 +110,20 @@ reject with the error message "Card number must contain only digits".
 If the number is all digits but fails the checksum, reject with the error
 message "Invalid card number".
 
-| Input | Result |
-|-------|--------|
+| Input                | Result                            |
+| -------------------- | --------------------------------- |
 | `"4111111111111112"` | checksum error (last digit wrong) |
-| `"1234567890"` | checksum error |
+| `"1234567890"`       | checksum error                    |
 
 ### AC 4: Accept valid card numbers
 
 If the number passes all checks, it should be accepted as valid.
 
-| Input | Result |
-|-------|--------|
-| `"4111111111111111"` | valid (Visa test number) |
+| Input                | Result                         |
+| -------------------- | ------------------------------ |
+| `"4111111111111111"` | valid (Visa test number)       |
 | `"5111111111111118"` | valid (Mastercard test number) |
-| `"341111111111111"` | valid (Amex test number) |
+| `"341111111111111"`  | valid (Amex test number)       |
 
 ### AC 5: Accept card numbers with spaces or dashes
 
@@ -137,8 +137,8 @@ This matches the caller contract in libraries such as
 formatting separators are accepted by the validator, not pre-cleaned by the
 caller.
 
-| Input | Result |
-|-------|--------|
+| Input                   | Result                  |
+| ----------------------- | ----------------------- |
 | `"4111 1111 1111 1111"` | valid (spaces stripped) |
 | `"4111-1111-1111-1111"` | valid (dashes stripped) |
 
@@ -173,30 +173,30 @@ payment processor.
 the right, the last digit is the check digit (never doubled). Then going left,
 double every other digit:
 
-| Digit | 4 | 5 | 3 | 9 | 5 | 7 | 8 | 7 | 6 | 3 | 6 | 2 | 1 | 4 | 8 | 6 |
-|-------|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| Action | x2 | | x2 | | x2 | | x2 | | x2 | | x2 | | x2 | | x2 | check |
+| Digit  | 4   | 5   | 3   | 9   | 5   | 7   | 8   | 7   | 6   | 3   | 6   | 2   | 1   | 4   | 8   | 6     |
+| ------ | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | ----- |
+| Action | x2  |     | x2  |     | x2  |     | x2  |     | x2  |     | x2  |     | x2  |     | x2  | check |
 
 **Step 2** - Do the doubling. If a result is greater than 9, add its digits
 together:
 
-| Doubled | Result | |
-|---------|--------|---|
-| 4 x 2 = 8 | 8 | |
-| 3 x 2 = 6 | 6 | |
-| 5 x 2 = 10 | **1** | (1+0) |
-| 8 x 2 = 16 | **7** | (1+6) |
-| 6 x 2 = 12 | **3** | (1+2) |
-| 6 x 2 = 12 | **3** | (1+2) |
-| 1 x 2 = 2 | 2 | |
-| 8 x 2 = 16 | **7** | (1+6) |
+| Doubled    | Result |       |
+| ---------- | ------ | ----- |
+| 4 x 2 = 8  | 8      |       |
+| 3 x 2 = 6  | 6      |       |
+| 5 x 2 = 10 | **1**  | (1+0) |
+| 8 x 2 = 16 | **7**  | (1+6) |
+| 6 x 2 = 12 | **3**  | (1+2) |
+| 6 x 2 = 12 | **3**  | (1+2) |
+| 1 x 2 = 2  | 2      |       |
+| 8 x 2 = 16 | **7**  | (1+6) |
 
 **Step 3** - Replace the doubled digits with their new values, keep everything
 else:
 
-| Original | 4 | 5 | 3 | 9 | 5 | 7 | 8 | 7 | 6 | 3 | 6 | 2 | 1 | 4 | 8 | 6 |
-|----------|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| Final | **8** | 5 | **6** | 9 | **1** | 7 | **7** | 7 | **3** | 3 | **3** | 2 | **2** | 4 | **7** | 6 |
+| Original | 4     | 5   | 3     | 9   | 5     | 7   | 8     | 7   | 6     | 3   | 6     | 2   | 1     | 4   | 8     | 6   |
+| -------- | ----- | --- | ----- | --- | ----- | --- | ----- | --- | ----- | --- | ----- | --- | ----- | --- | ----- | --- |
+| Final    | **8** | 5   | **6** | 9   | **1** | 7   | **7** | 7   | **3** | 3   | **3** | 2   | **2** | 4   | **7** | 6   |
 
 **Step 4** - Sum all the final values:
 
@@ -211,29 +211,29 @@ Visa test number) with the last digit changed from 1 to 2.
 
 **Step 1** - Identify which digits to double:
 
-| Digit | 4 | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 2 |
-|-------|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| Action | x2 | | x2 | | x2 | | x2 | | x2 | | x2 | | x2 | | x2 | check |
+| Digit  | 4   | 1   | 1   | 1   | 1   | 1   | 1   | 1   | 1   | 1   | 1   | 1   | 1   | 1   | 1   | 2     |
+| ------ | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | ----- |
+| Action | x2  |     | x2  |     | x2  |     | x2  |     | x2  |     | x2  |     | x2  |     | x2  | check |
 
 **Step 2** - Double the marked digits (no results exceed 9 here, so no
 digit-adding needed):
 
-| Doubled | Result |
-|---------|--------|
-| 4 x 2 = 8 | 8 |
-| 1 x 2 = 2 | 2 |
-| 1 x 2 = 2 | 2 |
-| 1 x 2 = 2 | 2 |
-| 1 x 2 = 2 | 2 |
-| 1 x 2 = 2 | 2 |
-| 1 x 2 = 2 | 2 |
-| 1 x 2 = 2 | 2 |
+| Doubled   | Result |
+| --------- | ------ |
+| 4 x 2 = 8 | 8      |
+| 1 x 2 = 2 | 2      |
+| 1 x 2 = 2 | 2      |
+| 1 x 2 = 2 | 2      |
+| 1 x 2 = 2 | 2      |
+| 1 x 2 = 2 | 2      |
+| 1 x 2 = 2 | 2      |
+| 1 x 2 = 2 | 2      |
 
 **Step 3** - Replace the doubled digits:
 
-| Original | 4 | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 2 |
-|----------|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| Final | **8** | 1 | **2** | 1 | **2** | 1 | **2** | 1 | **2** | 1 | **2** | 1 | **2** | 1 | **2** | 2 |
+| Original | 4     | 1   | 1     | 1   | 1     | 1   | 1     | 1   | 1     | 1   | 1     | 1   | 1     | 1   | 1     | 2   |
+| -------- | ----- | --- | ----- | --- | ----- | --- | ----- | --- | ----- | --- | ----- | --- | ----- | --- | ----- | --- |
+| Final    | **8** | 1   | **2** | 1   | **2** | 1   | **2** | 1   | **2** | 1   | **2** | 1   | **2** | 1   | **2** | 2   |
 
 **Step 4** - Sum:
 
@@ -267,12 +267,12 @@ Useful ways to prove the checksum behaviour:
    gives you more confidence than one magic value. In Lab 1, provider names are
    labels for recognisable card-number shapes, not behaviour to detect yet:
 
-   | Example | Number | Why it is useful |
-   | --- | --- | --- |
-   | Visa-shaped number | `4539578763621486` | Exercises the "subtract 9" step |
-   | Visa all-ones test number | `4111111111111111` | Familiar valid checksum example |
-   | Mastercard-shaped number | `5111111111111118` | Another valid 16-digit number |
-   | Amex-shaped number | `341111111111111` | Valid 15-digit number with different Luhn parity |
+   | Example                   | Number             | Why it is useful                                 |
+   | ------------------------- | ------------------ | ------------------------------------------------ |
+   | Visa-shaped number        | `4539578763621486` | Exercises the "subtract 9" step                  |
+   | Visa all-ones test number | `4111111111111111` | Familiar valid checksum example                  |
+   | Mastercard-shaped number  | `5111111111111118` | Another valid 16-digit number                    |
+   | Amex-shaped number        | `341111111111111`  | Valid 15-digit number with different Luhn parity |
 
    If you turn these into a table test, keep the test name about the Lab 1
    behaviour: accepting known-valid card numbers. Provider detection starts in
@@ -301,7 +301,7 @@ What good Luhn tests should catch:
 
 What you do not need to add yet: You do not need to check which provider a card
 belongs to, validate card number lengths, or enforce any provider-specific
-rules. Your validator should accept *any* number that passes the checksum,
+rules. Your validator should accept _any_ number that passes the checksum,
 regardless of what it starts with or how long it is. Provider detection and
 provider-specific validation are coming in Lab 2.
 

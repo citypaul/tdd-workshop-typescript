@@ -9,3 +9,4 @@ outputs/
 .vitest-attachments/
 __screenshots__/
 reports/
+storybook-static/

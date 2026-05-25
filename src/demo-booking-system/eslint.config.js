@@ -13,16 +13,22 @@ export default tseslint.config(
     ignores: [
       'node_modules',
       'dist',
+      '**/dist/**',
       'storybook-static',
+      '**/storybook-static/**',
       'playwright-report',
+      '**/playwright-report/**',
       'coverage',
+      '**/coverage/**',
       'reports',
+      '**/reports/**',
       '.stryker-tmp',
+      '**/.stryker-tmp/**',
     ],
   },
   js.configs.recommended,
   {
-    files: ['scripts/**/*.js', '*.js'],
+    files: ['src/demo-booking-system/*.js', 'src/demo-booking-system/scripts/**/*.js'],
     languageOptions: { globals: { ...globals.node } },
   },
   ...tseslint.configs.strictTypeChecked.map((config) => ({

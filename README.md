@@ -154,13 +154,13 @@ Use the start tags during the workshop. Use the end tags only after trying the e
 
 ## Useful Commands
 
-| Command                        | Purpose                                        |
-| ------------------------------ | ---------------------------------------------- |
-| `pnpm test:card`               | Run the card-validator tests                   |
-| `pnpm test:card:unit`          | Run pure validator tests                       |
-| `pnpm test:card:browser`       | Run React form browser tests                   |
-| `pnpm test:booking`            | Run booking-system domain/API/web tests        |
-| `pnpm acceptance:booking`      | Run booking-system Playwright acceptance tests |
+| Command                   | Purpose                                        |
+| ------------------------- | ---------------------------------------------- |
+| `pnpm test:card`          | Run the card-validator tests                   |
+| `pnpm test:card:unit`     | Run pure validator tests                       |
+| `pnpm test:card:browser`  | Run React form browser tests                   |
+| `pnpm test:booking`       | Run booking-system domain/API/web tests        |
+| `pnpm acceptance:booking` | Run booking-system Playwright acceptance tests |
 
 ## Test Data
 

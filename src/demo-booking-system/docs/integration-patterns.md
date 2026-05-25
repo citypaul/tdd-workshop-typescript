@@ -9,11 +9,11 @@ Two techniques do most of the work:
 
 ## Ports we currently have
 
-| Port                  | File                               | Consumed by          | Why it's a port                                                                                               |
-| --------------------- | ---------------------------------- | -------------------- | ------------------------------------------------------------------------------------------------------------- |
+| Port                  | File                                                   | Consumed by          | Why it's a port                                                                                               |
+| --------------------- | ------------------------------------------------------ | -------------------- | ------------------------------------------------------------------------------------------------------------- |
 | `Store`               | `src/demo-booking-system/api/store.ts`                 | Every Hono handler   | Persistence is going to change (Postgres, DynamoDB, Redis) but the domain operations don't                    |
 | `NotificationsClient` | `src/demo-booking-system/api/clients/notifications.ts` | `POST /api/bookings` | The downstream service is owned by another team and could be replaced; we depend on the _shape_, not the wire |
-| `now`                 | injected into `createApp`          | `POST /api/bookings` | Time is an external effect; validating "no bookings in the past" requires a mockable clock                    |
+| `now`                 | injected into `createApp`                              | `POST /api/bookings` | Time is an external effect; validating "no bookings in the past" requires a mockable clock                    |
 
 Each port is a TypeScript `type` with `readonly` members and parameter objects — the same conventions as the rest of the codebase. Adapters are factory functions: `makeInMemoryStore`, `makeHttpNotificationsClient`. No classes, no `new`, no inheritance.
 

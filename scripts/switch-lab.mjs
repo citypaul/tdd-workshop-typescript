@@ -28,19 +28,21 @@ const labConfigs = {
 };
 
 const labAliases = {
-  "1": "lab1",
+  1: "lab1",
   "lab-1": "lab1",
   lab1: "lab1",
-  "2": "lab2",
+  2: "lab2",
   "lab-2": "lab2",
   lab2: "lab2",
-  "3": "lab3",
+  3: "lab3",
   "lab-3": "lab3",
   lab3: "lab3",
 };
 
 export function getLabConfig(rawLab) {
-  const lab = String(rawLab ?? "").trim().toLowerCase();
+  const lab = String(rawLab ?? "")
+    .trim()
+    .toLowerCase();
   const key = labAliases[lab];
 
   if (!key) {
@@ -84,7 +86,8 @@ function runGit(args, options = {}) {
   });
 
   if (result.status !== 0) {
-    const detail = result.stderr || result.stdout || `git ${args.join(" ")} failed`;
+    const detail =
+      result.stderr || result.stdout || `git ${args.join(" ")} failed`;
     throw new Error(detail.trim());
   }
 

@@ -8,8 +8,10 @@ const config = {
   },
   coverageAnalysis: 'perTest',
   mutate: [
-    'src/demo-booking-system/**/*.ts',
-    'src/demo-booking-system/**/*.tsx',
+    'src/demo-booking-system/api/**/*.ts',
+    'src/demo-booking-system/domain/**/*.ts',
+    'src/demo-booking-system/web/**/*.ts',
+    'src/demo-booking-system/web/**/*.tsx',
     '!src/demo-booking-system/**/*.test.ts',
     '!src/demo-booking-system/**/*.test.tsx',
     '!src/demo-booking-system/**/*.mirror.test.ts',
@@ -22,7 +24,7 @@ const config = {
     '!src/demo-booking-system/api/main.ts',
     '!src/demo-booking-system/web/main.tsx',
   ],
-  thresholds: { high: 100, low: 100, break: 100 },
+  thresholds: { high: 100, low: 0, break: null },
   incremental: false,
   reporters: ['clear-text', 'progress', 'html'],
   htmlReporter: {

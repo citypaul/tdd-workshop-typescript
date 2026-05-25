@@ -93,11 +93,11 @@ Useful card-number examples are collected in
 
 Your validator needs to recognise these supported providers:
 
-| Provider | Starts with | Length |
-| --- | --- | --- |
-| Visa | `4` | 16 digits |
+| Provider   | Starts with                | Length    |
+| ---------- | -------------------------- | --------- |
+| Visa       | `4`                        | 16 digits |
 | Mastercard | `51`-`55` or `2221`-`2720` | 16 digits |
-| Amex | `34` or `37` | 15 digits |
+| Amex       | `34` or `37`               | 15 digits |
 
 Notes:
 
@@ -112,13 +112,13 @@ Notes:
 
 The validation result must tell the caller which provider issued the card.
 
-| Input | Expected provider |
-| --- | --- |
-| A valid 16-digit number starting with `4` | Visa |
-| A valid 16-digit number starting with `51` | Mastercard |
-| A valid 16-digit number starting with `2221` | Mastercard |
-| A valid 15-digit number starting with `34` | Amex |
-| A valid 15-digit number starting with `37` | Amex |
+| Input                                        | Expected provider |
+| -------------------------------------------- | ----------------- |
+| A valid 16-digit number starting with `4`    | Visa              |
+| A valid 16-digit number starting with `51`   | Mastercard        |
+| A valid 16-digit number starting with `2221` | Mastercard        |
+| A valid 15-digit number starting with `34`   | Amex              |
+| A valid 15-digit number starting with `37`   | Amex              |
 
 This is an API-feedback point. The Lab 1 result shape was enough when the
 validator only answered "error or no error". Lab 2 needs the caller to know the
@@ -143,10 +143,10 @@ Each provider requires a specific number of digits. If a number matches a
 provider prefix but has the wrong number of digits, the error message must name
 the provider and state the required length.
 
-| Scenario | Error message |
-| --- | --- |
-| Starts with `4`, but is not 16 digits | `Visa cards must be 16 digits` |
-| Starts with `34` or `37`, but is not 15 digits | `Amex cards must be 15 digits` |
+| Scenario                                              | Error message                        |
+| ----------------------------------------------------- | ------------------------------------ |
+| Starts with `4`, but is not 16 digits                 | `Visa cards must be 16 digits`       |
+| Starts with `34` or `37`, but is not 15 digits        | `Amex cards must be 15 digits`       |
 | Starts with a Mastercard prefix, but is not 16 digits | `Mastercard cards must be 16 digits` |
 
 ### AC 4: Mastercard's full prefix range
@@ -154,16 +154,16 @@ the provider and state the required length.
 Both of Mastercard's prefix ranges must be recognised.
 
 | Prefix | Expected result |
-| --- | --- |
-| `2220` | not Mastercard |
-| `2221` | Mastercard |
-| `2500` | Mastercard |
-| `2720` | Mastercard |
-| `2721` | not Mastercard |
-| `50` | not Mastercard |
-| `51` | Mastercard |
-| `55` | Mastercard |
-| `56` | not Mastercard |
+| ------ | --------------- |
+| `2220` | not Mastercard  |
+| `2221` | Mastercard      |
+| `2500` | Mastercard      |
+| `2720` | Mastercard      |
+| `2721` | not Mastercard  |
+| `50`   | not Mastercard  |
+| `51`   | Mastercard      |
+| `55`   | Mastercard      |
+| `56`   | not Mastercard  |
 
 The boundary examples matter. A broad "starts with 2" or "starts with 5"
 implementation would give false confidence here.

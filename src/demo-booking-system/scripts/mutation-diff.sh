@@ -13,7 +13,10 @@ cd "${REPO_ROOT}"
 
 CHANGED=$(
   git diff --name-only --diff-filter=ACMR "${BASE_REF}...HEAD" -- \
-    "${PROJECT_REL}/**/*.ts" "${PROJECT_REL}/**/*.tsx" \
+    "${PROJECT_REL}/api/**/*.ts" \
+    "${PROJECT_REL}/domain/**/*.ts" \
+    "${PROJECT_REL}/web/**/*.ts" \
+    "${PROJECT_REL}/web/**/*.tsx" \
   | grep -Ev '\.test\.|\.mirror\.test\.|\.stories\.|\.d\.ts$|/test/|/types/|/(api|web)/main\.(ts|tsx)$' \
   || true
 )

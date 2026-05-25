@@ -34,7 +34,7 @@
 
   form:has(input[aria-invalid="true"]) [role="status"]:not(:empty) {
     background-color: oklch(96% 0.018 30);
-    color: oklch(38% 0.130 28);
+    color: oklch(38% 0.13 28);
   }
 
   form:has(input[aria-invalid="true"]) [role="status"]:not(:empty)::before {
@@ -42,8 +42,8 @@
   }
 
   form:has(input[aria-invalid="false"]) [role="status"]:not(:empty) {
-    background-color: oklch(95% 0.030 160);
-    color: oklch(38% 0.090 160);
+    background-color: oklch(95% 0.03 160);
+    color: oklch(38% 0.09 160);
   }
 
   form:has(input[aria-invalid="false"]) [role="status"]:not(:empty)::before {
