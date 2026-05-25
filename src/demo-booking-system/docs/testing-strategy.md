@@ -75,7 +75,7 @@ We accept this because rule changes are rare compared to everyday development, a
 
 There are several well-known testing strategies that would produce different tradeoffs. We considered each.
 
-### Alternative A — Outside-in only (BDD / London school)
+### Alternative A — Outside-in only
 
 **What it is:** test only through the public HTTP API. No separate domain tests. Business rules are proven by the HTTP contract.
 
@@ -93,7 +93,7 @@ There are several well-known testing strategies that would produce different tra
 - Adding a new consumer type (CLI, worker) means establishing a whole new testing infrastructure before the pattern can extend.
 - Mutation reports are noisier — domain mutations only die to HTTP-shaped tests, which describe consequences, not causes.
 
-**Where we'd choose it instead:** small domains where the logic is a thin mapping; teams practising strict BDD with Gherkin-style stakeholder scenarios; apps whose only entry point will ever be the HTTP API.
+**Where we'd choose it instead:** small domains where the logic is a thin mapping; apps whose only entry point will ever be the HTTP API; teams that can tolerate slower TDD feedback in exchange for maximum refactoring freedom at lower layers.
 
 ### Alternative B — Classic / unit-only
 

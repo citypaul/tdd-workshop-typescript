@@ -32,7 +32,7 @@ Each test name IS the acceptance criterion for a user flow. Reading the test lis
 
 Legend: ✅ implemented · 🚧 in progress · ⬜ not started
 
-Format note: this document expresses **acceptance criteria** in Given/When/Then. The tests themselves use natural-prose names, consistent with every other spec in this tree.
+Format note: this document uses **Given/When/Then labels** as plain-language scaffolding for acceptance examples only. This is not Gherkin and not a recommendation to use Cucumber. The tests themselves use natural-prose names, consistent with every other spec in this tree.
 
 ---
 

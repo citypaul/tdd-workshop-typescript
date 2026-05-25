@@ -28,7 +28,7 @@ The `useBookings` hook is not tested in isolation. Its behaviour surfaces throug
 
 Legend: ✅ implemented · 🚧 in progress · ⬜ not started
 
-Format note: this document expresses **acceptance criteria** in Given/When/Then. The tests themselves use natural-prose names (consistent with every other spec in this tree).
+Format note: this document uses **Given/When/Then labels** as plain-language scaffolding for acceptance examples only. This is not Gherkin and not a recommendation to use Cucumber. The tests themselves use natural-prose names (consistent with every other spec in this tree).
 
 ---
 

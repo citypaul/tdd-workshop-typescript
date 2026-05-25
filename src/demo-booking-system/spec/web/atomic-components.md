@@ -18,7 +18,7 @@ Business requirements for the atomic components that make up the "Break Somethin
 
 Legend: ✅ implemented · 🚧 in progress · ⬜ not started
 
-Format note: this document expresses **acceptance criteria** in Given/When/Then for readers coming from a BDD background. The tests themselves do NOT use Given/When/Then in their names — test names read as natural-prose sentences about what the user observes (see the test files listed above).
+Format note: this document uses **Given/When/Then labels** as plain-language scaffolding for acceptance examples only. This is not Gherkin and not a recommendation to use Cucumber. The tests themselves use natural-prose names about what the user observes (see the test files listed above).
 
 Testing split (for reviewers wondering why certain assertions aren't here):
 

@@ -30,7 +30,7 @@ On failure: `{ success: false, error: <business-readable message>, rule: <RuleId
 
 Legend: ✅ implemented · 🚧 in progress · ⬜ not started
 
-Format note: this document expresses **acceptance criteria** in Given/When/Then for readers coming from a BDD background. The tests themselves do NOT use Given/When/Then in their names — test names read as natural-prose sentences about system behaviour (see `src/demo-booking-system/domain/validate-booking.test.ts`).
+Format note: this document uses **Given/When/Then labels** as plain-language scaffolding for acceptance examples only. This is not Gherkin and not a recommendation to use Cucumber. The tests themselves use natural-prose names about system behaviour (see `src/demo-booking-system/domain/validate-booking.test.ts`).
 
 Implementation structure: `validateBooking()` is composed of named rule helpers in `src/demo-booking-system/domain/rules/` — one file per rule. The helpers are pure predicates that return `true` when the rule is violated. `validateBooking()` orchestrates the cascade and owns the business-readable error messages.
 

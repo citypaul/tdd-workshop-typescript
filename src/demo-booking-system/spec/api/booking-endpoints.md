@@ -19,7 +19,7 @@ Business requirements for the HTTP surface of the booking system. Every scenario
 
 Legend: ✅ implemented · 🚧 in progress · ⬜ not started
 
-Format note: this document expresses **acceptance criteria** in Given/When/Then for readers coming from a BDD background. The tests themselves do NOT use Given/When/Then in their names — test names read as natural-prose sentences about observable HTTP behaviour (see `src/demo-booking-system/api/rooms.test.ts`, `src/demo-booking-system/api/bookings.test.ts`, `src/demo-booking-system/api/notifications.test.ts`, `src/demo-booking-system/api/responses.test.ts`).
+Format note: this document uses **Given/When/Then labels** as plain-language scaffolding for acceptance examples only. This is not Gherkin and not a recommendation to use Cucumber. The tests themselves use natural-prose names about observable HTTP behaviour (see `src/demo-booking-system/api/rooms.test.ts`, `src/demo-booking-system/api/bookings.test.ts`, `src/demo-booking-system/api/notifications.test.ts`, `src/demo-booking-system/api/responses.test.ts`).
 
 ---
 
