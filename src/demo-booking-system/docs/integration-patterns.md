@@ -17,6 +17,8 @@ Two techniques do most of the work:
 
 Each port is a TypeScript `type` with `readonly` members and parameter objects — the same conventions as the rest of the codebase. Adapters are factory functions: `makeInMemoryStore`, `makeHttpNotificationsClient`. No classes, no `new`, no inheritance.
 
+The `now` port is the smallest example of test-first design pressure. If the domain reached directly into `new Date()`, the "no past bookings" rule would be coupled to the wall clock and the tests would need global clock tricks. Passing `now` into the API, then into `validateBooking`, makes the date-sensitive rule deterministic and keeps the production code honest about its dependency on time.
+
 Id generation lives on the `Store` port itself — `saveBooking({ request })` returns a `Booking` with the id stamped, the same shape real ORMs expose via `repo.save(entity)`. Production wires `crypto.randomUUID()` into `makeInMemoryStore` from `src/demo-booking-system/api/main.ts`; tests either take the test-factory default or pass their own deterministic `nextId` when an assertion needs to pin the id. Making id generation a concern of the repository (not a top-level port on `createApp`) matches how real apps do it and avoids a wiring-surface abstraction that wouldn't exist in production codebases.
 
 ## When to introduce a port
