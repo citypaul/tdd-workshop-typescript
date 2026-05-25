@@ -2,3 +2,9 @@ notes/
 node_modules/
 local.properties
 reports/
+plans/
+.pnpm-store/
+outputs/
+.presentation-workspace/
+.vitest-attachments/
+__screenshots__/
