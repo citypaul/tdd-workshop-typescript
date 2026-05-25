@@ -6,19 +6,61 @@ The core exercise is a credit-card validator built through strict TDD in TypeScr
 
 ## Setup
 
+If you already have the right Node.js version and pnpm installed, setup should
+just be:
+
+```bash
+pnpm install
+pnpm test:card
+```
+
+Then move to the right lab checkpoint:
+
+```bash
+pnpm start:lab1
+pnpm start:lab2
+pnpm start:lab3
+```
+
+These commands check out the workshop tags (`lab-1-start`, `lab-2-start`, and `lab-3-start`) as detached lab checkpoints. Run them from a clean worktree; if you have work to keep, commit or stash it before switching labs.
+
+After switching, open the lab spec and follow the "Getting Started" section.
+
+That's the normal path. `pnpm install` installs the project dependencies and the
+Playwright Chromium browser used by the browser-mode tests.
+
+To run the card-validator app:
+
+```bash
+pnpm dev:card
+```
+
+To run the booking-system demo:
+
+```bash
+pnpm dev:booking
+pnpm test:booking
+```
+
+## Requirements
+
 You need:
 
 - Node.js 22.12.0 or newer. Node 22 LTS is the simplest choice.
 - pnpm 10 or 11.
 - Git.
 
-Check your versions:
+If setup fails, check your versions:
 
 ```bash
 node --version
 pnpm --version
 git --version
 ```
+
+Then use the troubleshooting notes below.
+
+## Troubleshooting
 
 ### Fix Node.js
 
@@ -62,44 +104,12 @@ If Corepack cannot create the `pnpm` command on Windows, run the terminal as Adm
 npm install -g pnpm@10
 ```
 
-### Install Dependencies
+### Fix Browser Install
 
-From the repository root:
-
-```bash
-pnpm install
-pnpm test:card
-```
-
-Then move to the right lab checkpoint:
-
-```bash
-pnpm start:lab1
-pnpm start:lab2
-pnpm start:lab3
-```
-
-These commands check out the workshop tags (`lab-1-start`, `lab-2-start`, and `lab-3-start`) as detached lab checkpoints. Run them from a clean worktree; if you have work to keep, commit or stash it before switching labs.
-
-After switching, open the lab spec and follow the "Getting Started" section.
-
-`pnpm install` also installs the Playwright Chromium browser used by the browser-mode tests. If that browser install is skipped or fails, run it manually:
+If the Playwright Chromium browser install is skipped or fails, run it manually:
 
 ```bash
 pnpm run install:browsers
-```
-
-To run the card-validator app:
-
-```bash
-pnpm dev:card
-```
-
-To run the booking-system demo:
-
-```bash
-pnpm dev:booking
-pnpm test:booking
 ```
 
 ### Windows Notes
