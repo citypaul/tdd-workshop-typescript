@@ -15,6 +15,19 @@ Four test layers, each with a clear job:
 
 The **domain and API layers both test every business rule**. That's the duplication, and it is the most controversial part of this strategy. The rest of the document is primarily about why.
 
+## Intentional anti-pattern suite
+
+The repo also contains `*.mirror.test.*` files. These are not examples to copy.
+They exist as a workshop teaching artefact: implementation-coupled tests can
+stay green while the real product promise is broken.
+
+For example, `api/bookings.mirror.test.ts` stubs `validateBooking` and proves
+that the API handler maps a stubbed `no-past` validation result to a `400`. That
+sounds useful, but it does **not** prove the real `no-past` rule. If the domain
+stops rejecting past bookings, the mirror test still passes because it supplied
+the rejection itself. The behaviour tests in `domain/validate-booking.test.ts`
+and `api/bookings.test.ts` are the tests that protect the product promise.
+
 ## Why we chose this
 
 ### 1. Localised failure signals

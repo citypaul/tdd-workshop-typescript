@@ -42,6 +42,7 @@
     "test:booking:web": "vitest run --config src/demo-booking-system/vitest.config.ts --project good-node --project good-browser web",
     "test:booking:web:watch": "vitest --config src/demo-booking-system/vitest.config.ts --project good-node --project good-browser web",
     "test:booking:mirror": "vitest run --config src/demo-booking-system/vitest.config.ts --project mirror --passWithNoTests",
+    "test:booking:mirror:watch": "vitest --config src/demo-booking-system/vitest.config.ts --project mirror",
     "test:booking:all": "vitest run --config src/demo-booking-system/vitest.config.ts",
     "test:coverage": "pnpm test:card -- --coverage && pnpm test:booking -- --coverage",
     "test:booking:ui": "vitest run --config src/demo-booking-system/vitest.config.ts --project good-browser --browser.headless=false",
