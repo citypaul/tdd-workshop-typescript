@@ -1,7 +1,8 @@
 # Lab 3 TypeScript Guide
 
 Practical companion to [Lab 3](./lab-3.md). This guide covers the testing
-tools, the accessibility-first query patterns, and the front-end lab shape.
+tools, accessibility-first query patterns, and the shape of a useful
+front-end TDD cycle.
 
 ## What's Already Set Up
 
@@ -87,18 +88,29 @@ the UI test, and no assertion on React state. The unit tests already specify the
 library. The front-end tests specify that the product surface uses the library
 correctly.
 
-Keep each browser test self-contained. Render a fresh `<App />`, interact with
-it, and assert the observable result. Do not rely on state created by an
-earlier test.
+Each browser test should create the state it needs. Render a fresh `<App />`,
+perform the interaction for that example, then assert the observable result. If
+a test only passes after another test has already run, it is not specifying a
+behaviour clearly enough.
 
-For the first whole-room TDD loop, a good starting behaviour is:
+## A Good First Behaviour
+
+A useful first behaviour is:
 
 > A user submits a valid Visa number and sees a success message that names Visa.
 
 That single example introduces the React test shape, the submit interaction,
-the call into the validator, and the result region. It does not need to solve
-errors, stale results, provider logos, or card-preview behaviour at the same
-time.
+the call into the validator, and the result region. Keep it small. It does not
+need to solve invalid inputs, stale results, provider logos, or card-preview
+behaviour at the same time.
+
+After that first behaviour is green, choose the next behaviour by asking:
+
+> What can the user, or assistive technology, still not observe?
+
+That might be one invalid-card message, stale result replacement, or the live
+region being present before any submission. Pick one and run another
+red-green-refactor cycle.
 
 ## Accessible Selectors Are Part Of The Contract
 
