@@ -134,6 +134,35 @@ That means UI tests should prove observable behaviour:
 
 Do not test React internals. Test through the rendered DOM.
 
+For this lab, test-first means behaviour-first. Write tests for what the user
+can do, what message appears, and what accessibility state is exposed. Do not
+write tests for colours, spacing, or Tailwind class strings unless a class is
+the only stable public contract for a deliberately decorative element.
+
+## Existing Styling Hooks
+
+There are no separate React components for success and error states in this
+lab. The starter form already has the visual shell, and
+`src/card-validator/app/index.css` contains the styling hooks for results.
+
+For the core behaviours, make the DOM contract true and let the existing CSS do
+the visual work:
+
+- render a result element with `role="status"` and `aria-live="polite"`;
+- set `aria-invalid="true"` on the input when validation fails;
+- set `aria-invalid="false"` when validation succeeds;
+- connect an error to the input with `aria-describedby`;
+- clear `aria-describedby` after a successful validation.
+
+The CSS styles non-empty status messages based on the input's `aria-invalid`
+state. You should not need to invent an `error` class for the core lab.
+
+For stretch behaviours:
+
+- provider logos can use an `is-active` class on the labelled logo wrapper;
+- the card preview is decorative, so `data-testid` is acceptable if you choose
+  to test it.
+
 ## How To Work Through This Lab
 
 Treat the rendered DOM as the public API of the front end. The user cannot see

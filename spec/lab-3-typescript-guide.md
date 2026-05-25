@@ -88,10 +88,43 @@ the UI test, and no assertion on React state. The unit tests already specify the
 library. The front-end tests specify that the product surface uses the library
 correctly.
 
+They also do not specify the look and feel. The test should drive behaviour and
+accessibility contracts first: labels, roles, messages, invalid state, and
+descriptions. CSS classes are implementation detail unless the class is the
+only stable way to expose a deliberately decorative state.
+
 Each browser test should create the state it needs. Render a fresh `<App />`,
 perform the interaction for that example, then assert the observable result. If
 a test only passes after another test has already run, it is not specifying a
 behaviour clearly enough.
+
+## Styling Hooks Already In The App
+
+The starter app does not include reusable success/error React components. It
+does include CSS hooks in `src/card-validator/app/index.css`.
+
+For the core result states, prefer semantic attributes over custom classes:
+
+```tsx
+<input
+  aria-invalid={hasError}
+  aria-describedby={hasError ? resultId : undefined}
+/>
+
+<p id={resultId} role="status" aria-live="polite">
+  {message}
+</p>
+```
+
+The existing CSS styles the non-empty status region by looking at
+`input[aria-invalid="true"]` or `input[aria-invalid="false"]`. In other words,
+make the behaviour and accessibility state correct, and the visual success or
+error treatment follows.
+
+For stretch behaviours, the existing CSS also supports:
+
+- `is-active` on a labelled provider-logo wrapper;
+- `data-testid="card-preview"` for the decorative card preview.
 
 ## A Good First Behaviour
 
