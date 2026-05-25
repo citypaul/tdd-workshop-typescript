@@ -35,8 +35,8 @@ pnpm start:lab3
 ```
 
 Read the **Purpose**, **Business Requirements**, and **Acceptance Criteria**
-before you write any tests. In the workshop, we will read these together first,
-then choose the first front-end behaviour as a group.
+before you write any tests. The first decision is the same as in the earlier
+labs: choose one behaviour that matters next, then make it executable.
 
 From the repository root, start the card-validator browser tests in watch mode:
 
@@ -79,8 +79,9 @@ The `src/card-validator/` project already has:
 - Vitest Browser Mode configured for React tests;
 - a starter smoke test in `src/card-validator/app/App.test.tsx`.
 
-At the start of the lab, the shell has no complete submit behaviour and no
-complete result display. Your job is to wire it up with tests.
+At the start of the lab, the shell renders a labelled card-number input and a
+Validate button. The submit action does not yet give the user a useful result.
+Your job is to evolve that behaviour through browser tests.
 
 Use the companion guide at
 [`lab-3-typescript-guide.md`](./lab-3-typescript-guide.md) while working. It
@@ -133,18 +134,32 @@ That means UI tests should prove observable behaviour:
 
 Do not test React internals. Test through the rendered DOM.
 
-## Lab Rhythm
+## How To Work Through This Lab
 
-This lab starts with a short whole-room mob so everyone sees the front-end test
-shape once before working in pairs.
+Treat the rendered DOM as the public API of the front end. The user cannot see
+React state or component structure. They can interact with labelled controls,
+press buttons, read messages, and use assistive technology.
 
-| Time   | Mode           | Focus                                                                    |
-| ------ | -------------- | ------------------------------------------------------------------------ |
-| 10 min | Concept        | The DOM is the public API: roles, labels, names, status messages         |
-| 20 min | Whole-room mob | First valid-card path from failing test to green UI                      |
-| 25 min | Pairs          | Invalid inputs, stale result replacement, and accessibility error wiring |
-| 10 min | Pairs/stretch  | Provider logo, card preview, or axe-core smoke test                      |
-| 10 min | Debrief        | What did the tests specify?                                              |
+Work in small TDD cycles:
+
+1. choose one observable behaviour from the acceptance criteria;
+2. write one failing browser test in `src/card-validator/app/App.test.tsx`;
+3. make the smallest change in `src/card-validator/app/App.tsx` that passes;
+4. refactor while the browser test stays green;
+5. choose the next behaviour.
+
+A useful first slice is:
+
+> A user submits a valid Visa number and sees a success message that names Visa.
+
+That slice is small, but it crosses the important front-end boundary: the user
+enters data, submits the form, the UI calls the validator, and the result is
+shown through the DOM. Leave errors, stale results, provider logos, and
+card-preview behaviour for later cycles.
+
+Keep each browser test independent. Each test should render its own `<App />`,
+perform the interaction it cares about, and assert the result. A test should
+still pass if it runs by itself.
 
 ## Acceptance Criteria
 
@@ -226,13 +241,17 @@ Start with this question:
 > What must a user, or assistive technology, be able to observe that the UI does
 > not do yet?
 
-The workshop will begin with one whole-room TDD loop for the first valid-card
-path. After that, continue one behaviour at a time:
+Choose examples that put new pressure on the UI. Do not jump straight to the
+complete final component. A good route through the lab is:
 
-- pick one observable UI or accessibility behaviour;
-- write one failing browser test for that behaviour;
-- make the smallest React change that passes;
-- refactor before choosing the next example.
+1. one valid card submission produces one visible success result;
+2. one invalid submission displays the validator's error message;
+3. a second submission replaces the first result;
+4. the result region exists before and after submission;
+5. validation errors are connected to the input for assistive technology.
+
+The route is a guide, not a script. If your tests reveal a better next example,
+follow the feedback from the code.
 
 Useful prompts:
 
